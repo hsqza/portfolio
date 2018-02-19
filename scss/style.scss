@@ -1,0 +1,530 @@
+@import url('https://fonts.googleapis.com/css?family=Lato&subset=latin-ext');
+
+$primaryColor: rgba(101, 87, 251, 0.60);
+$textColor: #6557fb;
+
+
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+       -moz-border-radius: $radius;
+        -ms-border-radius: $radius;
+            border-radius: $radius;
+}
+
+@mixin posCenter() {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+@mixin posCustom($t, $l,$r,$b) {
+    position: absolute;
+    top: $t;
+    left: $l;
+    transform: translate(-$r,-$b);
+}
+@mixin contain() {
+    @include posCenter;
+    text-align: center;
+    z-index: 100;
+    width: 280px;
+    height: 200px;
+    opacity: 0;
+    transition: .5s ease;
+    color: purple;
+    .content {
+        @include posCenter;
+    }
+}
+@mixin hoverPortfolio() {
+    opacity: 1;
+    color: #fff;
+    transition: .5s ease;
+}
+
+body {
+    background: #000;
+    margin-top: 96px;
+    font-family: 'Lato', sans-serif;
+}
+a:hover {
+    color: $primaryColor;
+}
+.navbar {
+    -webkit-box-shadow: 0px -1px 22px 2px $primaryColor;
+    -moz-box-shadow: 0px -1px 22px 2px $primaryColor;
+    box-shadow: 0px -1px 22px 2px $primaryColor;
+    .nav-item {
+        position: relative;
+        .nav-link.active {
+            color: $textColor;
+            text-transform: uppercase;
+        }
+        a {
+            &:before {
+                content: "";
+                position: absolute;
+                bottom: 15%;
+                right: 50%;
+                width: 0%;
+                height: 2px;
+                transition: all .25s ease-in;
+                background: $primaryColor;
+            }
+            &:hover:before {
+                position: absolute;
+                right: 0;
+                width: 100%;
+            }
+            &:hover {
+                color: $textColor !important;
+            }
+        }
+       
+    }
+}
+
+.carousel-item {
+    height: 700px;
+    .btn-outline-light:hover,
+    .btn-outline-light:active {
+        color: #999;
+        border-color: #fff;
+    }
+}
+.fa, a {
+    color: #fff;
+}
+ul {
+    li {
+        text-decoration: none;
+        list-style-type: none;
+    }
+}
+
+
+.carousel-image-1 {
+    background: url('../img/banner-1.jpg') no-repeat center center;
+    background-size: cover; 
+    background-attachment: fixed;
+}
+.carousel-image-2 {
+    background: url('../img/banner-2.jpg') no-repeat center center;
+    background-size: cover; 
+    background-attachment: fixed;
+}
+.carousel-image-3 {
+    background: url('../img/banner-3.jpg') no-repeat center center;
+    background-size: cover; 
+    background-attachment: fixed;
+}
+.carousel-indicators .active {
+    background: $primaryColor;
+}
+
+#about, #technology {
+    color: #fff;
+    margin-top: -2px;
+}
+#technology {
+    overflow-x: hidden;
+    background: url('../img/keybord.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    .fa {
+        font-size: 36px;
+    }
+
+}
+
+#welcome {
+    position: relative;
+}
+
+#video {
+    overflow-x: hidden;
+    .dark-overlay {
+        position: relative;
+        opacity: 0.9;
+        video {
+            min-height: 300px;
+        }
+        .card {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            .card-body {
+                @include posCenter;
+            }
+        }
+        div:last-child {
+            background: transparent;
+        }
+    }
+
+}
+
+#aboutModal {
+    .modal-header {
+        border-bottom: 1px solid $textColor;
+        button span {
+            color: #fff;
+            cursor: pointer;
+        }
+    }
+    .card {
+        border: none;
+    }
+}
+
+#goes-further {
+    background: url('../img/woman.jpg');
+    background-position: 20% 35%;
+    background-size: cover;
+    .container {
+        min-height: 650px;
+        div div {
+            @include posCenter;
+            box-shadow: 2px 5px 10px rgba(0,0,0,1);
+            h3 {
+                background: transparent;
+                font-size: 2em;
+                display: inline-block;
+                padding: 1em 0;
+                line-height: 1.5em;
+                text-transform: uppercase;
+                color: #fff;
+                text-shadow: 0 5px 10px rgba(0,0,0,1),
+                             5px 5px 10px rgba(255,0,4,.8);
+                mix-blend-mode: overlay;
+            }
+        }
+    }
+}
+
+#be-yourself {
+    background: url('../img/beyourself.jpg') no-repeat 50% 100%;
+    background-size: cover;
+    background-attachment: fixed;
+    .row {
+        height: 450px;
+    } 
+}
+
+#indestructible {
+    background: url('../img/puzzle.jpg');
+    background-size: cover;
+    height: 80vh;
+    .row {
+        position: absolute;
+        bottom: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+#portfolio {
+    .container {
+        .main-content {
+            .portfolio {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: repeat(4, 1fr);
+                grid-gap: 5px;
+                .portfolio-item {
+                    display: flex; 
+                    transition: .3s ease;
+                    position: relative;
+                    &:hover {
+                        opacity: .8;
+                        transition: .3s ease;
+                        cursor: pointer;
+                    }
+                    &:after {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: 50%;
+                        bottom: 0;
+                        right: 0;
+                        width: 0;
+                        transition: all .35s ease-out;
+                    }
+                    &:hover:after {
+                        content: '';
+                        width: 100%;
+                        left: 0;
+                        color: white;
+                        background: $primaryColor;
+                        transition: all .35s ease-out;
+                    }
+                }
+                .portfolio-item-1 {
+                    grid-column: 1/3;
+                    grid-row: 1/3;
+                    height: 400px;
+                    position: relative;
+                    background: url('../img/gpage.png') no-repeat center 75%;
+                    background-size: cover;
+                    &:hover {
+                        .container {
+                            @include hoverPortfolio;
+                        }
+                    }
+                    .container {
+                        @include contain;
+                    }
+                }
+                .portfolio-item-2 {
+                    grid-column: 3/4;
+                    grid-row: 1/4;
+                    height: 630px;
+                    position: relative;
+                    background: url('../img/lpage.png') no-repeat center center;
+                    background-size: cover;
+                    &:hover {
+                        .container {
+                            @include hoverPortfolio;
+                        }
+                    }
+                    .container {
+                        @include contain;
+                    }
+                }
+                .portfolio-item-3 {
+                    grid-column: 2/3;
+                    grid-row: 3/4;
+                    height: 200px;
+                    background: url('../img/dashbord.jpg') no-repeat center center;
+                    background-size: cover;
+                    &:hover {
+                        .container {
+                            @include hoverPortfolio;
+                        }
+                    }
+                    .container {
+                        @include contain;
+                    }
+                }
+                .portfolio-item-4 {
+                    grid-column: 1/2;
+                    grid-row: 3/5;
+                    height: 415px;
+                    background: url('../img/mpage.png') no-repeat left center;
+                    background-size: cover;
+                    &:hover {
+                        .container {
+                            @include hoverPortfolio;
+                        }
+                    }
+                    .container {
+                        @include contain;
+                    }
+                }
+                .portfolio-item-5 {
+                    grid-column: 2/3;
+                    grid-row: 4/5;
+                    height: 200px;
+                    background: url('../img/portfolio.png') no-repeat center center;
+                    background-size: cover;
+                    &:hover {
+                        .container {
+                            @include hoverPortfolio;
+                        }
+                    }
+                    .container {
+                        @include contain;
+                    }
+                }
+                .portfolio-item-6 {
+                    grid-column: 3/4;
+                    grid-row: 4/5;
+                    height: 200px;
+                    background: url('../img/hpage.png') no-repeat left center;
+                    background-size: cover;
+                    &:hover {
+                        .container {
+                            @include hoverPortfolio;
+                        }
+                    }
+                    .container {
+                        @include contain;
+                    }
+                }
+            }
+            .portfolio-app {
+                .card {
+                    min-height: 480px;
+                    .card-body {
+                        background: #000;
+                        color: #fff;
+                        text-align: center;
+                        img {
+                            border-radius: 8px;
+                        }
+                    }
+                    a:hover {
+                        text-decoration: none;
+                        color: inherit;
+                    }
+                }
+            }
+        }
+    }
+}
+#welcome {
+    overflow-x: hidden;
+    .row {
+        filter: grayscale(100%);
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+    }
+    .form-group, .input-group {
+        .form-control {
+            background-color: #322626;
+        }
+    }
+    
+}
+
+
+#footer {
+    .container {
+        .row {
+            div:nth-child(3) {
+                form {
+                    ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+                        text-align: center;
+                      }
+                      ::-moz-placeholder { /* Firefox 19+ */
+                        text-align: center;
+                      }
+                      :-ms-input-placeholder { /* IE 10+ */
+                        text-align: center;
+                      }
+                    .form-control {
+                        background: transparent;
+                        border-bottom: 1px solid $primaryColor;
+                        &:focus {
+                            border-color: transparent;
+                            border-bottom: 1px solid $textColor;
+                        }
+                    }
+                    > input {
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    #footer {
+        .container {
+            .row {
+                div {
+                    margin-top: 20px;
+                    &:nth-child(2) {
+                        margin-bottom: 20px;
+                    }
+                }
+            }
+            & > div:nth-child(2) {
+                margin-top: 35px;
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width: 630px) and (min-width: 481px) {
+    #showcase {
+        #myCarousel {
+            .carousel-inner {
+                .carousel-item {
+                    height: 400px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 575px) {
+    #technology {
+        .row:nth-child(odd) {
+            div:last-child {
+                padding: 30px 0; 
+            }
+        }
+        .row:nth-child(even) {
+            div:first-child {
+                padding: 30px 0;
+            }
+        }
+    }
+    #portfolio {
+        .container {
+            .main-content {
+                .portfolio {
+                    .portfolio-item {
+                        height: 300px;
+                        margin-top: 45px;
+                        background-position: top center;
+                    }
+                    .portfolio-item-1 {
+                        grid-column: 1/-1;
+                        grid-row: 1/2;
+                    }
+                    .portfolio-item-2 {
+                        grid-column: 1/-1;
+                        grid-row: 2/3;
+                    }
+                    .portfolio-item-3 {
+                        grid-column: 1/-1;
+                        grid-row: 3/4;
+                    }
+                    .portfolio-item-4 {
+                        grid-column: 1/-1;
+                        grid-row: 4/5;
+                    }
+                    .portfolio-item-5 {
+                        grid-column: 1/-1;
+                        grid-row: 5/6;
+                    }
+                    .portfolio-item-6 {
+                        grid-column: 1/-1;
+                        grid-row: 6/7;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+    #showcase {
+        #myCarousel {
+            .carousel-inner {
+                .carousel-item {
+                    height: 350px;
+                    .carousel-caption {
+                        text-align: center !important;
+                        margin-bottom: 1rem !important;
+                        h1 {
+                            font-size: 40px;
+                        }
+                        p {
+                            font-size: 20px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
